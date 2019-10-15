@@ -8,6 +8,14 @@ prefixes = ["ExtendedTurboX264Target_", "TurboX264Reference_", "TurboX264Target_
 testCases = ["DC_THREE_PASS", "DC_TWO_PASS", "GOT_THREE_PASS", "GOT_TWO_PASS", "JGAG_THREE_PASS", "JGAG_TWO_PASS"]
 
 
+class Measurement_Record:
+    def __init__(self, name, bitrate, psnr, vmaf):
+        self.name = name
+        self.bitrate = bitrate
+        self.psnr = psnr
+        self.vmaf = vmaf
+
+
 def runTest(prefixRefData, prefixTestData):
     bdsnr_psnr_avg = []
     bdsnr_vmaf_avg = []
@@ -58,6 +66,7 @@ def parse_data(data):
         for tag in tags:
             if (tokens[0].find(tag) != -1):
                 parseLine = (tokens[0], tokens[3], tokens[-3], tokens[-2])
+                print(parseLine)
                 if tag not in parsedData:
                     parsedData[tag] = []
                 parsedData[tag].append(parseLine)
@@ -70,11 +79,12 @@ def runBdrateOnFolder(folder):
     testData = {}
     for prefix in prefixes:
         testData[prefix] = {}
+        print("For " + prefix)
         for testCase in testCases:
             data = open(os.path.join(folder, prefix+testCase, "data.csv"), "r")
             testData[prefix][testCase] = parse_data(data)
-            print("For " + prefix+testCase)
-            print(testData[prefix][testCase])
+            # print("For " + prefix+testCase)
+            # print(testData[prefix][testCase])
 
     print("\n\n\n Scenario TurboX264Reference_ vs ExtendedTurboX264Target_ \n\n\n")
     runTest(testData["TurboX264Reference_"], testData["ExtendedTurboX264Target_"])
