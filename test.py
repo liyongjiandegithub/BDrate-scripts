@@ -1,7 +1,7 @@
 from bjontegaard_metric import *
 import os
 
-tags = ["HD5min", "HD10min", "HD30min", "FullHD5min", "FullHD10min", "FullHD30min"]
+tags = ["PASSHD5min", "PASSHD10min", "PASSHD30min", "PASSFullHD5min", "PASSFullHD10min", "PASSFullHD30min"]
 
 prefixes = ["ExtendedTurboX264Target_", "TurboX264Reference_", "TurboX264Target_"]
 
