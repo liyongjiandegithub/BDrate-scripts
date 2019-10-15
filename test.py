@@ -8,14 +8,6 @@ prefixes = ["ExtendedTurboX264Target_", "TurboX264Reference_", "TurboX264Target_
 testCases = ["DC_THREE_PASS", "DC_TWO_PASS", "GOT_THREE_PASS", "GOT_TWO_PASS", "JGAG_THREE_PASS", "JGAG_TWO_PASS"]
 
 
-class Measurement_Record:
-    def __init__(self, name, bitrate, psnr, vmaf):
-        self.name = name
-        self.bitrate = bitrate
-        self.psnr = psnr
-        self.vmaf = vmaf
-
-
 def runTest(prefixRefData, prefixTestData):
     bdsnr_psnr_avg = []
     bdsnr_vmaf_avg = []
